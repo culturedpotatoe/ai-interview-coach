@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Interview Coach</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Home -->
+  <section id="homeScreen" class="screen">
+    <div class="container">
+      <h1>AI Interview Coach</h1>
+      <p>Practice technical or behavioral interviews with real-time scoring and feedback.</p>
+      <button id="startBtn" class="btn primary">Start Interview</button>
+    </div>
+  </section>
+
+  <!-- Setup -->
+  <section id="setupScreen" class="screen hidden">
+    <div class="container">
+      <h2>Setup</h2>
+      <form id="setupForm">
+        <label>Role
+          <select id="role" required>
+            <option value="">Select a role</option>
+            <option>Software Engineer</option>
+            <option>Product Manager</option>
+            <option>Data Analyst</option>
+            <option>DevOps Engineer</option>
+            <option>UI/UX Designer</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Interview Type</legend>
+          <label><input type="radio" name="mode" value="technical" required/> Technical</label>
+          <label><input type="radio" name="mode" value="behavioral" required/> Behavioral</label>
+        </fieldset>
+        <label>Domain (optional)
+          <input id="domain" placeholder="e.g., frontend, backend, ML"/>
+        </label>
+        <button class="btn primary" type="submit">Begin</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Interview -->
+  <section id="interviewScreen" class="screen hidden">
+    <div class="container">
+      <div class="bar">
+        <span id="counter">Question 1 of 5</span>
+        <div class="progress"><div id="progressFill"></div></div>
+      </div>
+      <div class="bubble"><span id="question">Loading...</span></div>
+      <textarea id="answer" rows="8" placeholder="Type a detailed answer..."></textarea>
+      <div class="actions">
+        <button id="skipBtn" class="btn">Skip</button>
+        <button id="submitBtn" class="btn primary">Submit</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section id="feedbackScreen" class="screen hidden">
+    <div class="container">
+      <h3>Feedback</h3>
+      <div class="score"><span id="scoreVal">0</span>/5</div>
+      <p id="feedbackText"></p>
+      <h4>Strengths</h4>
+      <ul id="strengths"></ul>
+      <h4>Improvements</h4>
+      <ul id="improvements"></ul>
+      <button id="continueBtn" class="btn primary">Continue</button>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section id="summaryScreen" class="screen hidden">
+    <div class="container">
+      <h2>Interview Complete 🎉</h2>
+      <div class="final">
+        <div class="final-score"><span id="overallScore">0</span>/5</div>
+        <div id="perfLevel" class="badge">Level</div>
+      </div>
+      <h4>Question Scores</h4>
+      <div id="qScores" class="scores"></div>
+      <h4>Strengths</h4>
+      <ul id="sumStrengths"></ul>
+      <h4>Improvements</h4>
+      <ul id="sumImprovements"></ul>
+      <h4>Recommendations</h4>
+      <ul id="recs"></ul>
+      <div class="actions">
+        <button id="restartBtn" class="btn">New Interview</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="loading" class="loading hidden">Processing…</div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
